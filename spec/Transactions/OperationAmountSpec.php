@@ -14,7 +14,7 @@ class OperationAmountSpec extends ObjectBehavior
 {
     public function it_should_throw_an_exception_if_provided_with_invalid_number()
     {
-        $this->beConstructedWith('test');
+        $this->beConstructedWith('not a number');
         $this->shouldThrow('CommissionCalculator\Transactions\Exceptions\InvalidAmountException')->duringInstantiation();
     }
 
