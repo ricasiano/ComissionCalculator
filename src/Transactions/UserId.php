@@ -23,6 +23,6 @@ class UserId
 
     public function getUserId()
     {
-        return (int) $this->userId;
+        return abs($this->userId);
     }
 }

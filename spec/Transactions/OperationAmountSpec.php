@@ -18,6 +18,12 @@ class OperationAmountSpec extends ObjectBehavior
         $this->shouldThrow('CommissionCalculator\Transactions\Exceptions\InvalidAmountException')->duringInstantiation();
     }
 
+    public function it_should_throw_an_exception_if_provided_with_a_negative_number()
+    {
+        $this->beConstructedWith(-11);
+        $this->shouldThrow('CommissionCalculator\Transactions\Exceptions\InvalidAmountException')->duringInstantiation();
+    }
+
     public function it_should_return_the_valid_amount()
     {
         $this->beConstructedWith('11.12');

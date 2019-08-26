@@ -19,6 +19,10 @@ class OperationAmount
         if (!is_numeric($this->operationAmount)) {
             throw new InvalidAmountException;
         }
+
+        if (0 > $this->operationAmount) {
+            throw new InvalidAmountException;
+        }
     }
 
     public function getOperationAmount()
