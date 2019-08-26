@@ -5,5 +5,5 @@ use CommissionCalculator\Transactions\CurrencyRates\AbstractCurrencyRate;
 
 class JPY extends AbstractCurrencyRate
 {
-    const CONVERSION_RATE = 0.0078;
+    const CONVERSION_RATE = 129.53;
 }

@@ -5,5 +5,5 @@ use CommissionCalculator\Transactions\CurrencyRates\AbstractCurrencyRate;
 
 class USD extends AbstractCurrencyRate
 {
-    const CONVERSION_RATE = 0.8698;
+    const CONVERSION_RATE = 1.1497;
 }
