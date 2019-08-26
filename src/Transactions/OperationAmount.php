@@ -23,6 +23,6 @@ class OperationAmount
 
     public function getOperationAmount()
     {
-        return (double) $this->operationAmount;
+        return (float) $this->operationAmount;
     }
 }
