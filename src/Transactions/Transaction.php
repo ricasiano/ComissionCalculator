@@ -1,6 +1,8 @@
 <?php
 namespace CommissionCalculator\Transactions;
 
+use CommissionCalculator\Transactions\Currencies\CurrencyFactory;
+
 class Transaction
 {
     private $operationDate;
@@ -17,6 +19,7 @@ class Transaction
         $this->userType = $data[2];
         $this->operationType = $data[3];
         $this->operationAmount = new OperationAmount($data[3]);
-        $this->currency = $data[4];
+        $currencyFactory = new CurrencyFactory($data[4]);
+        $this->currency = $currencyFactory->createCurrency();
     }
 }
