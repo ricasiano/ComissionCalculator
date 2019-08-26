@@ -1,7 +1,7 @@
 <?php
 namespace CommissionCalculator\Transactions;
 
-use CommissionCalculator\Transactions\Currencies\CurrencyFactory;
+use CommissionCalculator\Transactions\CurrencyRates\CurrencyFactory;
 
 class Transaction
 {
@@ -11,6 +11,7 @@ class Transaction
     private $operationType;
     private $operationAmount;
     private $currency;
+    private $convertedAmount;
 
     public function __construct(array $data)
     {

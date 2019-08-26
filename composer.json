@@ -1,6 +1,7 @@
 {
   "require-dev": {
-    "phpspec/phpspec": "^4.3"
+    "phpspec/phpspec": "^4.3",
+    "mockery/mockery": "^1.2"
   },
   "autoload": {
     "psr-4": {"CommissionCalculator\\": "src/"}

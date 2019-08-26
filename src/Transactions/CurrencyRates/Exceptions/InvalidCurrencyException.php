@@ -1,5 +1,5 @@
 <?php
-namespace CommissionCalculator\Transactions\Currencies\Exceptions;
+namespace CommissionCalculator\Transactions\CurrencyRates\Exceptions;
 
 use \Exception;
 
