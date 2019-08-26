@@ -24,14 +24,13 @@ class AccountTransactionSpec extends ObjectBehavior
         $operationAmount->beADoubleOf(CurrencyConverter::class);
         $operationAmount->computeConvertedAmount()->willReturn(100);
         $operationDate->beADoubleOf(OperationDate::class);
-        $operationDate->__toString()->willReturn('2019-01-01');
+        $operationDate->__toString()->willReturn('2019-07-15');
 
         $this->beConstructedWith($userId, $operationAmount, $operationDate);
 
         $this->getUserId()->shouldReturn(1);
         $this->getOperationAmount()->shouldReturn(100);
-        $this->getWeekNumber()->shouldReturn('01');
+        $this->getWeekNumber()->shouldReturn('29');
         $this->getYear()->shouldReturn('2019');
-
     }
 }

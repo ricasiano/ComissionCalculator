@@ -109,6 +109,7 @@ class AccountTransactionsFilteredByWeekSpec extends ObjectBehavior
         $invalidExistingTransaction2->getUserId()->willReturn(1);
         $invalidExistingTransaction2->getYear()->willReturn(2021);
         $invalidExistingTransaction->getOperationAmount()->willReturn(1000);
+
         $accountTransactions->attach($invalidExistingTransaction2->getWrappedObject());
 
         $currentTransaction->beADoubleOf(AccountTransaction::class);
