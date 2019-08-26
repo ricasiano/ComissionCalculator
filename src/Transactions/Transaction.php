@@ -1,7 +1,8 @@
 <?php
 namespace CommissionCalculator\Transactions;
 
-use CommissionCalculator\Transactions\CurrencyRates\CurrencyFactory;
+use CommissionCalculator\Transactions\CurrencyRates\CurrencyRateFactory;
+use CommissionCalculator\Transactions\CurrencyRates\JPY\EUR;
 
 class Transaction
 {
@@ -20,7 +21,7 @@ class Transaction
         $this->userType = $data[2];
         $this->operationType = $data[3];
         $this->operationAmount = new OperationAmount($data[3]);
-        $currencyFactory = new CurrencyFactory($data[4]);
-        $this->currency = $currencyFactory->createCurrency();
+        $currencyRateFactory = new CurrencyRateFactory($data[4], 'EUR');
+        $this->currency = $currencyRateFactory->createCurrencyRate();
     }
 }
