@@ -21,7 +21,7 @@ class LegalPersonSpec extends ObjectBehavior
 
         $this->beConstructedWith($currencyConverter);
 
-        $this->computeCommission()->shouldBeApproximately(4.5, 1.0e-9);
+        $this->computeCommission()->shouldBeApproximately(0.5, 1.0e-9);
     }
 
     function it_should_return_5_cents_if_computed_amount_is_less_than_5_cents(
@@ -33,6 +33,6 @@ class LegalPersonSpec extends ObjectBehavior
 
         $this->beConstructedWith($currencyConverter);
 
-        $this->computeCommission()->shouldBe(0.05);
+        $this->computeCommission()->shouldBe(0.5);
     }
 }

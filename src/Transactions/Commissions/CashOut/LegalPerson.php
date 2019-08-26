@@ -7,7 +7,7 @@ use CommissionCalculator\Transactions\CurrencyConverter;
 
 class LegalPerson extends AbstractCommission
 {
-    const MINIMUM_COMMISSION = 0.05;
+    const MINIMUM_COMMISSION = 0.5;
 
     private $currencyConverter;
 

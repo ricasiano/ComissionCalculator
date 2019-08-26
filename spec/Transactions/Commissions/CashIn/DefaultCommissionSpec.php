@@ -21,7 +21,7 @@ class DefaultCommissionSpec extends ObjectBehavior
 
         $this->beConstructedWith($currencyConverter);
 
-        $this->computeCommission()->shouldBeApproximately(4.5, 1.0e-9);
+        $this->computeCommission()->shouldBeApproximately(.45, 1.0e-9);
     }
 
     function it_should_return_the_correct_amount_if_converted_to_value_is_more_than_five_euros(
@@ -33,6 +33,6 @@ class DefaultCommissionSpec extends ObjectBehavior
 
         $this->beConstructedWith($currencyConverter);
 
-        $this->computeCommission()->shouldBe(5.00);
+        $this->computeCommission()->shouldBeApproximately(3, 1.0e-9);
     }
 }

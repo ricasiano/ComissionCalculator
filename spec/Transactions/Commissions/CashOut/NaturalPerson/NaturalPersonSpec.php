@@ -46,7 +46,7 @@ class NaturalPersonSpec extends ObjectBehavior
 
         $this->beConstructedWith($accountTransactionsFilteredByWeek, $currentTransaction);
 
-        $this->computeCommission()->shouldBeApproximately(6, 1.0e-9);
+        $this->computeCommission()->shouldBeApproximately(0.6, 1.0e-9);
     }
 
     function it_should_return_the_computed_commission_if_the_computed_transaction_amount_exceeded_for_the_week
@@ -64,6 +64,6 @@ class NaturalPersonSpec extends ObjectBehavior
 
         $this->beConstructedWith($accountTransactionsFilteredByWeek, $currentTransaction);
 
-        $this->computeCommission()->shouldBeApproximately(30, 1.0e-9);
+        $this->computeCommission()->shouldBeApproximately(3, 1.0e-9);
     }
 }
