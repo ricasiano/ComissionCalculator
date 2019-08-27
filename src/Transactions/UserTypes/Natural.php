@@ -4,7 +4,7 @@ namespace CommissionCalculator\Transactions\UserTypes;
 
 class Natural implements UserType
 {
-    public function getLabel()
+    public function getLabel(): string
     {
         return 'NaturalPerson';
     }

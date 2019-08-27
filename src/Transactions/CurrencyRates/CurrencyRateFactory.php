@@ -26,7 +26,7 @@ class CurrencyRateFactory
         }
     }
 
-    public function createCurrencyRate()
+    public function createCurrencyRate(): CurrencyRate
     {
         return new $this->classCurrency();
     }

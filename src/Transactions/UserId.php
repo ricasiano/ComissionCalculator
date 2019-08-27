@@ -21,7 +21,7 @@ class UserId
         }
     }
 
-    public function getUserId()
+    public function getUserId(): int
     {
         return abs($this->userId);
     }

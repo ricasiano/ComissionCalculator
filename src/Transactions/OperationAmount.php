@@ -25,7 +25,7 @@ class OperationAmount
         }
     }
 
-    public function getOperationAmount()
+    public function getOperationAmount(): float
     {
         return (float) $this->operationAmount;
     }
