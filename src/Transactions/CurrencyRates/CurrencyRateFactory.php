@@ -8,25 +8,26 @@ class CurrencyRateFactory
     const CURRENCY_NAMESPACE = "CommissionCalculator\\Transactions\\CurrencyRates\\";
     private $originalCurrency;
     private $targetCurrency;
+    private $classCurrency;
 
 
-    public function __construct(string $originalCurrency, string $targetCurrency)
+    public function __construct($originalCurrency, $targetCurrency)
     {
         $this->originalCurrency = strtoupper($originalCurrency);
         $this->targetCurrency = strtoupper($targetCurrency);
+        $this->classCurrency = self::CURRENCY_NAMESPACE . $this->originalCurrency . "\\" . $this->targetCurrency;
         $this->validateCurrency();
     }
 
     private function validateCurrency()
     {
-        if (!class_exists(self::CURRENCY_NAMESPACE . $this->originalCurrency . "\\" . $this->targetCurrency)) {
+        if (!class_exists($this->classCurrency)) {
             throw new InvalidCurrencyException;
         }
     }
 
     public function createCurrencyRate()
     {
-        $classCurrency = self::CURRENCY_NAMESPACE . $this->originalCurrency . "\\" . $this->targetCurrency;
-        return new $classCurrency();
+        return new $this->classCurrency();
     }
 }
