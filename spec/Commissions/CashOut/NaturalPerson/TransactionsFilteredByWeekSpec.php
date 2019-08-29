@@ -5,6 +5,7 @@ namespace spec\CommissionCalculator\Commissions\CashOut\NaturalPerson;
 use CommissionCalculator\Transactions\Transaction;
 use CommissionCalculator\Transactions\Transactions;
 use CommissionCalculator\Commissions\CashOut\NaturalPerson\TransactionsFilteredByWeek;
+use CommissionCalculator\Transactions\TransactionTypes\CashOut;
 use CommissionCalculator\Transactions\UserId;
 use CommissionCalculator\Transactions\OperationAmount;
 use CommissionCalculator\Transactions\OperationDate;
@@ -27,10 +28,13 @@ class TransactionsFilteredByWeekSpec extends ObjectBehavior
         UserId $userId2,
         OperationDate $operationDate_1_2019,
         OperationDate $operationDate_2_2021,
-        OperationDate $operationDate_1_2021
+        OperationDate $operationDate_1_2021,
+        CashOut $transactionType
     )
     {
         $accountTransactions = new Transactions();
+
+        $transactionType->beADoubleOf(CashOut::class);
 
         $userId->beADoubleOf(UserId::class);
         $userId->getUserId()->willReturn(1);
@@ -53,31 +57,37 @@ class TransactionsFilteredByWeekSpec extends ObjectBehavior
         $validExistingTransaction->beADoubleOf(Transaction::class);
         $validExistingTransaction->getUserId()->willReturn($userId);
         $validExistingTransaction->getOperationDate()->willReturn($operationDate_1_2019);
+        $validExistingTransaction->getTransactionType()->willReturn($transactionType);
         $accountTransactions->attach($validExistingTransaction->getWrappedObject());
 
         $validExistingTransaction2->beADoubleOf(Transaction::class);
         $validExistingTransaction2->getUserId()->willReturn($userId);
         $validExistingTransaction2->getOperationDate()->willReturn($operationDate_1_2019);
+        $validExistingTransaction2->getTransactionType()->willReturn($transactionType);
         $accountTransactions->attach($validExistingTransaction2->getWrappedObject());
 
         $validExistingTransaction3->beADoubleOf(Transaction::class);
         $validExistingTransaction3->getUserId()->willReturn($userId);
         $validExistingTransaction3->getOperationDate()->willReturn($operationDate_1_2019);
+        $validExistingTransaction3->getTransactionType()->willReturn($transactionType);
         $accountTransactions->attach($validExistingTransaction3->getWrappedObject());
 
         $invalidExistingTransaction->beADoubleOf(Transaction::class);
         $invalidExistingTransaction->getUserId()->willReturn($userId2);
         $invalidExistingTransaction->getOperationDate()->willReturn($operationDate_2_2021);
+        $invalidExistingTransaction->getTransactionType()->willReturn($transactionType);
         $accountTransactions->attach($invalidExistingTransaction->getWrappedObject());
 
         $invalidExistingTransaction2->beADoubleOf(Transaction::class);
         $invalidExistingTransaction2->getUserId()->willReturn($userId);
         $invalidExistingTransaction2->getOperationDate()->willReturn($operationDate_1_2021);
+        $invalidExistingTransaction2->getTransactionType()->willReturn($transactionType);
         $accountTransactions->attach($invalidExistingTransaction2->getWrappedObject());
 
         $currentTransaction->beADoubleOf(Transaction::class);
         $currentTransaction->getUserId()->willReturn($userId);
         $currentTransaction->getOperationDate()->willReturn($operationDate_1_2019);
+        $currentTransaction->getTransactionType()->willReturn($transactionType);
 
         $this->beConstructedWith($accountTransactions, $currentTransaction);
 
@@ -100,10 +110,13 @@ class TransactionsFilteredByWeekSpec extends ObjectBehavior
         OperationAmount $operationAmount1000,
         OperationDate $operationDate_1_2019,
         OperationDate $operationDate_2_2021,
-        OperationDate $operationDate_1_2021
+        OperationDate $operationDate_1_2021,
+        CashOut $transactionType
     )
     {
         $accountTransactions = new Transactions();
+
+        $transactionType->beADoubleOf(CashOut::class);
 
         $userId->beADoubleOf(UserId::class);
         $userId->getUserId()->willReturn(1);
@@ -142,23 +155,27 @@ class TransactionsFilteredByWeekSpec extends ObjectBehavior
         $validExistingTransaction->getUserId()->willReturn($userId);
         $validExistingTransaction->getOperationDate()->willReturn($operationDate_1_2019);
         $validExistingTransaction->getOperationAmount()->willReturn($operationAmount100);
+        $validExistingTransaction->getTransactionType()->willReturn($transactionType);
         $accountTransactions->attach($validExistingTransaction->getWrappedObject());
 
         $validExistingTransaction2->beADoubleOf(Transaction::class);
         $validExistingTransaction2->getUserId()->willReturn($userId);
         $validExistingTransaction2->getOperationDate()->willReturn($operationDate_1_2019);
         $validExistingTransaction2->getOperationAmount()->willReturn($operationAmount200);
+        $validExistingTransaction2->getTransactionType()->willReturn($transactionType);
         $accountTransactions->attach($validExistingTransaction2->getWrappedObject());
 
         $validExistingTransaction3->beADoubleOf(Transaction::class);
         $validExistingTransaction3->getUserId()->willReturn($userId);
         $validExistingTransaction3->getOperationDate()->willReturn($operationDate_1_2019);
         $validExistingTransaction3->getOperationAmount()->willReturn($operationAmount300);
+        $validExistingTransaction3->getTransactionType()->willReturn($transactionType);
         $accountTransactions->attach($validExistingTransaction3->getWrappedObject());
 
         $invalidExistingTransaction->beADoubleOf(Transaction::class);
         $invalidExistingTransaction->getUserId()->willReturn($userId2);
         $invalidExistingTransaction->getOperationAmount()->willReturn($operationAmount900);
+        $invalidExistingTransaction->getTransactionType()->willReturn($transactionType);
         $invalidExistingTransaction->getOperationDate()->willReturn($operationDate_2_2021);
 
         $accountTransactions->attach($invalidExistingTransaction->getWrappedObject());
@@ -166,6 +183,7 @@ class TransactionsFilteredByWeekSpec extends ObjectBehavior
         $invalidExistingTransaction2->beADoubleOf(Transaction::class);
         $invalidExistingTransaction2->getUserId()->willReturn($userId);
         $invalidExistingTransaction2->getOperationDate()->willReturn($operationDate_1_2021);
+        $invalidExistingTransaction2->getTransactionType()->willReturn($transactionType);
         $invalidExistingTransaction2->getOperationAmount()->willReturn($operationAmount1000);
 
         $accountTransactions->attach($invalidExistingTransaction2->getWrappedObject());
@@ -173,6 +191,7 @@ class TransactionsFilteredByWeekSpec extends ObjectBehavior
         $currentTransaction->beADoubleOf(Transaction::class);
         $currentTransaction->getUserId()->willReturn($userId);
         $currentTransaction->getOperationDate()->willReturn($operationDate_1_2019);
+        $currentTransaction->getTransactionType()->willReturn($transactionType);
 
         $this->beConstructedWith($accountTransactions, $currentTransaction);
 

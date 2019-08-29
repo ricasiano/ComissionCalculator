@@ -51,7 +51,6 @@ class CommissionFactory
 
     private function buildNaturalPersonCommission(): NaturalPerson
     {
-
         $transactionsFilteredByWeek = new TransactionsFilteredByWeek(
             $this->transactions,
             $this->currentTransaction

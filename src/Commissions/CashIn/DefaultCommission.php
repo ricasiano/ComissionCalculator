@@ -8,6 +8,7 @@ use CommissionCalculator\Transactions\OperationAmount;
 class DefaultCommission extends AbstractCommission
 {
     const MAX_COMMISSION = 5.00;
+    const DEFAULT_COMMISSION_RATE = 0.0003;
 
     private $operationAmount;
 

@@ -36,8 +36,6 @@ class OperationDate
         $daysElapsed = $transactionDate->diff($start);
 
         return ceil($daysElapsed->format('%a') / 7);
-
-//        return date('W', strtotime($this->operationDate));
     }
 
     public function getYear(): string

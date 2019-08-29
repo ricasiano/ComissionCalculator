@@ -35,7 +35,8 @@ class NaturalPerson extends AbstractCommission
         }
 
         if (self::MAX_AMOUNT_DISCOUNTED_FOR_COMMISSION_PER_WEEK < $totalTransactionsForWeek) {
-            return  $this->computeExceededAmountForTheWeek($operationAmount) * self::DEFAULT_COMMISSION_RATE;
+            return $this->computeExceededAmountForTheWeek($operationAmount) * self::DEFAULT_COMMISSION_RATE;
+
         }
 
         return 0;

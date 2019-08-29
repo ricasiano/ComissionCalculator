@@ -26,14 +26,9 @@ class CommissionCalculator
             $transactions = new Transactions();
 
             array_walk($this->rawTransactions, function($rawTransaction) use($transactions) {
-
-
                 $rawTransaction[4] = $this->convertCurrency($rawTransaction[5], 'EUR', $rawTransaction[4]);
-
                 $transaction = new Transaction($rawTransaction);
-
                 $transactions->attach($transaction);
-                $transactions->rewind();
                 $commissionFactory = new CommissionFactory($transactions, $transaction);
                 $commission = $commissionFactory->createCommission();
                 $commissionAmount = $commission->computeCommission();

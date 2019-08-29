@@ -3,6 +3,7 @@ namespace CommissionCalculator\Commissions\CashOut\NaturalPerson;
 
 use CommissionCalculator\Transactions\Transactions;
 use CommissionCalculator\Transactions\Transaction;
+use CommissionCalculator\Transactions\TransactionTypes\CashOut;
 
 class TransactionsFilteredByWeek
 {
@@ -58,6 +59,7 @@ class TransactionsFilteredByWeek
         $operationDate = $transaction->getOperationDate();
 
         return ($transactionUserId->getUserId() == $currentTransactionUserId->getUserId() &&
-            $operationDate->getWeekNumber() == $this->operationDate->getWeekNumber());
+            $operationDate->getWeekNumber() == $this->operationDate->getWeekNumber() &&
+            $transaction->getTransactionType() instanceof CashOut);
     }
 }
