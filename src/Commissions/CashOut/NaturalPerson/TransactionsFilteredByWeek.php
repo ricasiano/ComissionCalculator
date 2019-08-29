@@ -7,15 +7,17 @@ use CommissionCalculator\Transactions\Transaction;
 class TransactionsFilteredByWeek
 {
     private $transactions;
+    /** @var Transaction $currentTransaction */
     private $currentTransaction;
     private $filteredTransactions;
 
-    public function __construct(Transactions $transactions, Transaction $currentTransaction)
+    public function __construct(Transactions $transactions, Transaction $transaction)
     {
         $this->filteredTransactions = new \SplObjectStorage();
+        $this->currentTransaction = $transaction;
+        $this->operationDate = $this->currentTransaction->getOperationDate();
         $transactions->rewind();
         $this->transactions = $transactions;
-        $this->currentTransaction = $currentTransaction;
         $this->findByCurrentTransaction();
     }
 
@@ -27,7 +29,8 @@ class TransactionsFilteredByWeek
     public function computeTotalOperationAmount()
     {
         return array_reduce(iterator_to_array($this->filteredTransactions),
-            function ($total, Transaction $operationAmount) {
+            function ($total, Transaction $transaction) {
+                $operationAmount = $transaction->getOperationAmount();
                 $total += $operationAmount->getOperationAmount();
 
                 return $total;
@@ -50,8 +53,12 @@ class TransactionsFilteredByWeek
 
     private function checkIfCurrentTransactionIsSameWithRunningTransaction(Transaction $transaction)
     {
-        return ($transaction->getUserId() == $this->currentTransaction->getUserId() &&
-            $transaction->getWeekNumber() == $this->currentTransaction->getWeekNumber() &&
-            $transaction->getYear() == $this->currentTransaction->getYear());
+        $transactionUserId = $transaction->getUserId();
+        $currentTransactionUserId = $this->currentTransaction->getUserId();
+        $operationDate = $transaction->getOperationDate();
+
+        return ($transactionUserId->getUserId() == $currentTransactionUserId->getUserId() &&
+            $operationDate->getWeekNumber() == $this->operationDate->getWeekNumber() &&
+            $operationDate->getYear() == $this->operationDate->getYear());
     }
 }

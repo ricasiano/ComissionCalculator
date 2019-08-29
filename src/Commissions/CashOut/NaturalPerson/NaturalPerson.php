@@ -28,12 +28,13 @@ class NaturalPerson extends AbstractCommission
         if (self::MAX_COMMISSIONED_TRANSACTIONS_PER_WEEK <
             $this->accountTransactionsFilteredByWeek->countTransactions()) {
 
-            return $operationAmount * self::DEFAULT_COMMISSION_RATE;
+            return $operationAmount->getOperationAmount() * self::DEFAULT_COMMISSION_RATE;
         }
 
         if (self::MAX_AMOUNT_DISCOUNTED_FOR_COMMISSION_PER_WEEK <
             $this->accountTransactionsFilteredByWeek->computeTotalOperationAmount()) {
-            $amountForCommission = $operationAmount - self::MAX_AMOUNT_DISCOUNTED_FOR_COMMISSION_PER_WEEK;
+            $amountForCommission =
+                $operationAmount->getOperationAmount() - self::MAX_AMOUNT_DISCOUNTED_FOR_COMMISSION_PER_WEEK;
 
             return  $amountForCommission * self::DEFAULT_COMMISSION_RATE;
         }

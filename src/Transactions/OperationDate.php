@@ -28,4 +28,14 @@ class OperationDate
     {
         return $this->operationDate;
     }
+
+    public function getWeekNumber(): string
+    {
+        return date('W', strtotime($this->operationDate));
+    }
+
+    public function getYear(): string
+    {
+        return date('Y', strtotime($this->operationDate));
+    }
 }
