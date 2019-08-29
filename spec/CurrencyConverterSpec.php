@@ -1,10 +1,9 @@
 <?php
+namespace spec\CommissionCalculator;
 
-namespace spec\CommissionCalculator\Transactions;
-
-use CommissionCalculator\Transactions\CurrencyConverter;
-use CommissionCalculator\Transactions\CurrencyRates\JPY\EUR;
-use CommissionCalculator\Transactions\CurrencyRates\CurrencyRate;
+use CommissionCalculator\CurrencyConverter;
+use CommissionCalculator\CurrencyRates\JPY\EUR;
+use CommissionCalculator\CurrencyRates\CurrencyRate;
 use CommissionCalculator\Transactions\OperationAmount;
 use Mockery;
 use PhpSpec\ObjectBehavior;
@@ -16,8 +15,7 @@ use Prophecy\Argument;
 class CurrencyConverterSpec extends ObjectBehavior
 {
     public function it_should_return_the_correct_converted_amount_from_JPY_to_EUR(
-        CurrencyRate $currencyRate,
-        OperationAmount $operationAmount
+        CurrencyRate $currencyRate
     )
     {
         $currencyRate->beADoubleOf(EUR::class);
@@ -31,8 +29,7 @@ class CurrencyConverterSpec extends ObjectBehavior
     }
 
     public function it_should_return_the_correct_converted_amount_from_EUR_to_JPY(
-        CurrencyRate $currencyRate,
-        OperationAmount $operationAmount
+        CurrencyRate $currencyRate
     )
     {
         $currencyRate->beADoubleOf(EUR::class);

@@ -4,11 +4,9 @@ namespace CommissionCalculator\Commissions;
 
 use CommissionCalculator\Commissions\CashIn\DefaultCommission;
 use CommissionCalculator\Commissions\CashOut\LegalPerson;
-use CommissionCalculator\Commissions\CashOut\NaturalPerson\AccountTransactions;
 use CommissionCalculator\Commissions\CashOut\NaturalPerson\NaturalPerson;
-use CommissionCalculator\TransactionTypes\CashIn;
-use CommissionCalculator\TransactionTypes\TransactionType;
-use CommissionCalculator\UserTypes\UserType;
+use CommissionCalculator\Transactions\TransactionTypes\TransactionType;
+use CommissionCalculator\Transactions\UserTypes\UserType;
 
 class CommissionFactory
 {

@@ -4,7 +4,7 @@ namespace CommissionCalculator\Commissions\CashOut\NaturalPerson;
 use CommissionCalculator\Transactions\Transactions;
 use CommissionCalculator\Transactions\Transaction;
 
-class AccountTransactionsFilteredByWeek
+class TransactionsFilteredByWeek
 {
     private $transactions;
     private $currentTransaction;

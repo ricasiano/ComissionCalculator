@@ -1,5 +1,4 @@
 <?php
-
 namespace CommissionCalculator;
 
 use CommissionCalculator\CurrencyRates\CurrencyRate;

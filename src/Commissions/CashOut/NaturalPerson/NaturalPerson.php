@@ -14,7 +14,7 @@ class NaturalPerson extends AbstractCommission
     private $currentTransaction;
 
     public function __construct(
-        AccountTransactionsFilteredByWeek $accountTransactionsFilteredByWeek,
+        TransactionsFilteredByWeek $accountTransactionsFilteredByWeek,
         Transaction $currentTransaction
     )
     {

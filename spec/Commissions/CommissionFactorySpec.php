@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\CommissionCalculator\Transactions\Commissions;
+namespace spec\CommissionCalculator\Commissions;
 
 use CommissionCalculator\Commissions\CashIn\DefaultCommission;
 use CommissionCalculator\Commissions\CommissionFactory;

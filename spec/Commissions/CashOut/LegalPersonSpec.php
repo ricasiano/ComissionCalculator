@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\CommissionCalculator\Transactions\Commissions\CashOut;
+namespace spec\CommissionCalculator\Commissions\CashOut;
 
-use CommissionCalculator\Transactions\Commissions\CashOut\LegalPerson;
+use CommissionCalculator\Commissions\CashOut\LegalPerson;
 use CommissionCalculator\Transactions\OperationAmount;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

@@ -1,60 +1,60 @@
 <?php
 
-namespace spec\CommissionCalculator\Transactions\Commissions\CashOut\NaturalPerson;
+namespace spec\CommissionCalculator\Commissions\CashOut\NaturalPerson;
 
-use CommissionCalculator\Transactions\Commissions\CashOut\NaturalPerson\AccountTransaction;
-use CommissionCalculator\Transactions\Commissions\CashOut\NaturalPerson\AccountTransactions;
-use CommissionCalculator\Transactions\Commissions\CashOut\NaturalPerson\AccountTransactionsFilteredByWeek;
+use CommissionCalculator\Transactions\Transaction;
+use CommissionCalculator\Transactions\Transactions;
+use CommissionCalculator\Commissions\CashOut\NaturalPerson\TransactionsFilteredByWeek;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 /**
- * @mixin AccountTransactionsFilteredByWeek
+ * @mixin TransactionsFilteredByWeek
  */
-class AccountTransactionsFilteredByWeekSpec extends ObjectBehavior
+class TransactionsFilteredByWeekSpec extends ObjectBehavior
 {
     function it_should_return_how_many_transactions_are_performed_for_this_week(
-        AccountTransaction $currentTransaction,
-        AccountTransaction $validExistingTransaction,
-        AccountTransaction $validExistingTransaction2,
-        AccountTransaction $validExistingTransaction3,
-        AccountTransaction $invalidExistingTransaction,
-        AccountTransaction $invalidExistingTransaction2
+        Transaction $currentTransaction,
+        Transaction $validExistingTransaction,
+        Transaction $validExistingTransaction2,
+        Transaction $validExistingTransaction3,
+        Transaction $invalidExistingTransaction,
+        Transaction $invalidExistingTransaction2
     )
     {
-        $accountTransactions = new AccountTransactions();
+        $accountTransactions = new Transactions();
 
-        $validExistingTransaction->beADoubleOf(AccountTransaction::class);
+        $validExistingTransaction->beADoubleOf(Transaction::class);
         $validExistingTransaction->getWeekNumber()->willReturn(1);
         $validExistingTransaction->getUserId()->willReturn(1);
         $validExistingTransaction->getYear()->willReturn(2019);
         $accountTransactions->attach($validExistingTransaction->getWrappedObject());
 
-        $validExistingTransaction2->beADoubleOf(AccountTransaction::class);
+        $validExistingTransaction2->beADoubleOf(Transaction::class);
         $validExistingTransaction2->getWeekNumber()->willReturn(1);
         $validExistingTransaction2->getUserId()->willReturn(1);
         $validExistingTransaction2->getYear()->willReturn(2019);
         $accountTransactions->attach($validExistingTransaction2->getWrappedObject());
 
-        $validExistingTransaction3->beADoubleOf(AccountTransaction::class);
+        $validExistingTransaction3->beADoubleOf(Transaction::class);
         $validExistingTransaction3->getWeekNumber()->willReturn(1);
         $validExistingTransaction3->getUserId()->willReturn(1);
         $validExistingTransaction3->getYear()->willReturn(2019);
         $accountTransactions->attach($validExistingTransaction3->getWrappedObject());
 
-        $invalidExistingTransaction->beADoubleOf(AccountTransaction::class);
+        $invalidExistingTransaction->beADoubleOf(Transaction::class);
         $invalidExistingTransaction->getWeekNumber()->willReturn(2);
         $invalidExistingTransaction->getUserId()->willReturn(5);
         $invalidExistingTransaction->getYear()->willReturn(2021);
         $accountTransactions->attach($invalidExistingTransaction->getWrappedObject());
 
-        $invalidExistingTransaction2->beADoubleOf(AccountTransaction::class);
+        $invalidExistingTransaction2->beADoubleOf(Transaction::class);
         $invalidExistingTransaction2->getWeekNumber()->willReturn(1);
         $invalidExistingTransaction2->getUserId()->willReturn(1);
         $invalidExistingTransaction2->getYear()->willReturn(2021);
         $accountTransactions->attach($invalidExistingTransaction2->getWrappedObject());
 
-        $currentTransaction->beADoubleOf(AccountTransaction::class);
+        $currentTransaction->beADoubleOf(Transaction::class);
         $currentTransaction->getWeekNumber()->willReturn(1);
         $currentTransaction->getUserId()->willReturn(1);
         $currentTransaction->getYear()->willReturn(2019);
@@ -65,38 +65,38 @@ class AccountTransactionsFilteredByWeekSpec extends ObjectBehavior
     }
 
     function it_should_return_the_total_amount_of_transactions_are_performed_for_this_week(
-        AccountTransaction $currentTransaction,
-        AccountTransaction $validExistingTransaction,
-        AccountTransaction $validExistingTransaction2,
-        AccountTransaction $validExistingTransaction3,
-        AccountTransaction $invalidExistingTransaction,
-        AccountTransaction $invalidExistingTransaction2
+        Transaction $currentTransaction,
+        Transaction $validExistingTransaction,
+        Transaction $validExistingTransaction2,
+        Transaction $validExistingTransaction3,
+        Transaction $invalidExistingTransaction,
+        Transaction $invalidExistingTransaction2
     )
     {
-        $accountTransactions = new AccountTransactions();
+        $accountTransactions = new Transactions();
 
-        $validExistingTransaction->beADoubleOf(AccountTransaction::class);
+        $validExistingTransaction->beADoubleOf(Transaction::class);
         $validExistingTransaction->getWeekNumber()->willReturn(1);
         $validExistingTransaction->getUserId()->willReturn(1);
         $validExistingTransaction->getYear()->willReturn(2019);
         $validExistingTransaction->getOperationAmount()->willReturn(100);
         $accountTransactions->attach($validExistingTransaction->getWrappedObject());
 
-        $validExistingTransaction2->beADoubleOf(AccountTransaction::class);
+        $validExistingTransaction2->beADoubleOf(Transaction::class);
         $validExistingTransaction2->getWeekNumber()->willReturn(1);
         $validExistingTransaction2->getUserId()->willReturn(1);
         $validExistingTransaction2->getYear()->willReturn(2019);
         $validExistingTransaction2->getOperationAmount()->willReturn(200);
         $accountTransactions->attach($validExistingTransaction2->getWrappedObject());
 
-        $validExistingTransaction3->beADoubleOf(AccountTransaction::class);
+        $validExistingTransaction3->beADoubleOf(Transaction::class);
         $validExistingTransaction3->getWeekNumber()->willReturn(1);
         $validExistingTransaction3->getUserId()->willReturn(1);
         $validExistingTransaction3->getYear()->willReturn(2019);
         $validExistingTransaction3->getOperationAmount()->willReturn(300);
         $accountTransactions->attach($validExistingTransaction3->getWrappedObject());
 
-        $invalidExistingTransaction->beADoubleOf(AccountTransaction::class);
+        $invalidExistingTransaction->beADoubleOf(Transaction::class);
         $invalidExistingTransaction->getWeekNumber()->willReturn(2);
         $invalidExistingTransaction->getUserId()->willReturn(5);
         $invalidExistingTransaction->getOperationAmount()->willReturn(900);
@@ -104,7 +104,7 @@ class AccountTransactionsFilteredByWeekSpec extends ObjectBehavior
 
         $accountTransactions->attach($invalidExistingTransaction->getWrappedObject());
 
-        $invalidExistingTransaction2->beADoubleOf(AccountTransaction::class);
+        $invalidExistingTransaction2->beADoubleOf(Transaction::class);
         $invalidExistingTransaction2->getWeekNumber()->willReturn(1);
         $invalidExistingTransaction2->getUserId()->willReturn(1);
         $invalidExistingTransaction2->getYear()->willReturn(2021);
@@ -112,7 +112,7 @@ class AccountTransactionsFilteredByWeekSpec extends ObjectBehavior
 
         $accountTransactions->attach($invalidExistingTransaction2->getWrappedObject());
 
-        $currentTransaction->beADoubleOf(AccountTransaction::class);
+        $currentTransaction->beADoubleOf(Transaction::class);
         $currentTransaction->getWeekNumber()->willReturn(1);
         $currentTransaction->getUserId()->willReturn(1);
         $currentTransaction->getYear()->willReturn(2019);
