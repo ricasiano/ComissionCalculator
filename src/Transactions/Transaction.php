@@ -26,10 +26,7 @@ class Transaction
         $this->userType = $userTypeFactory->createUserType();
         $transactionTypeFactory = new TransactionTypeFactory($data[3]);
         $this->transactionType = $transactionTypeFactory->createTransactionType();
-        $currencyRateFactory = new CurrencyRateFactory($data[5], self::DEFAULT_CURRENCY_FOR_COMMISSION);
-        $currencyRate = $currencyRateFactory->createCurrencyRate();
-        $amountForCommission = new CurrencyConverter($currencyRate, $data[4]);
-        $this->operationAmount = new OperationAmount($amountForCommission->computeConvertedAmount());
+        $this->operationAmount = new OperationAmount($data[5]);
     }
 
     public function getUserId(): UserId
