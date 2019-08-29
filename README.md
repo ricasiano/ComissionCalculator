@@ -4,3 +4,7 @@ Commission Calculator(repo wrong spelling, ugh)
 2. run tests: vendor/bin/phpspec run
 3. chmod 700 run.sh
 4. ./run.sh
+
+or
+
+php script.php input.csv
