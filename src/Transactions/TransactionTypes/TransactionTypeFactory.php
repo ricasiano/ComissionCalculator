@@ -16,7 +16,9 @@ class TransactionTypeFactory
 
     private function cleanTransactionTypeName()
     {
-        return ucfirst(strtolower(str_replace('_', '', $this->transactionType)));
+        $transactionType = array_map('ucfirst', explode('_', $this->transactionType));
+
+        return implode('', $transactionType);
     }
 
     private function validateTransactionType()
@@ -28,6 +30,8 @@ class TransactionTypeFactory
 
     public function createTransactionType(): TransactionType
     {
-        return new $this->classTransactionType();
+        $transactionType = new $this->classTransactionType();
+
+        return $transactionType;
     }
 }

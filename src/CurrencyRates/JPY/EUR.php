@@ -1,9 +1,14 @@
 <?php
 namespace CommissionCalculator\CurrencyRates\JPY;
 
-use CommissionCalculator\CurrencyRates\AbstractCurrencyRate;
+use CommissionCalculator\CurrencyRates\CurrencyRate;
 
-class EUR extends AbstractCurrencyRate
+class EUR implements CurrencyRate
 {
-    const CONVERSION_RATE = 0.0078;
+    const CONVERSION_RATE = 0.007720219;
+
+    public function getConversionRate()
+    {
+        return self::CONVERSION_RATE;
+    }
 }

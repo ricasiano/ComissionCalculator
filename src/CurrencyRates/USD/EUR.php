@@ -1,9 +1,14 @@
 <?php
 namespace CommissionCalculator\CurrencyRates\USD;
 
-use CommissionCalculator\CurrencyRates\AbstractCurrencyRate;
+use CommissionCalculator\CurrencyRates\CurrencyRate;
 
-class EUR extends AbstractCurrencyRate
+class EUR implements CurrencyRate
 {
-    const CONVERSION_RATE = 0.8698;
+    const CONVERSION_RATE = 0.86979212;
+
+    public function getConversionRate()
+    {
+        return self::CONVERSION_RATE;
+    }
 }

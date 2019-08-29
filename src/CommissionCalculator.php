@@ -27,19 +27,20 @@ class CommissionCalculator
 
             array_walk($this->rawTransactions, function($rawTransaction) use($transactions) {
 
-                $rawTransaction[3] = $this->convertCurrency($rawTransaction[5], 'EUR', $rawTransaction[3]);
+
+                $rawTransaction[4] = $this->convertCurrency($rawTransaction[5], 'EUR', $rawTransaction[4]);
 
                 $transaction = new Transaction($rawTransaction);
-                $transactions->attach($transaction);
 
-                $commissionFactory = new CommissionFactory($transactions);
+                $transactions->attach($transaction);
+                $transactions->rewind();
+                $commissionFactory = new CommissionFactory($transactions, $transaction);
                 $commission = $commissionFactory->createCommission();
                 $commissionAmount = $commission->computeCommission();
-
                 $convertedCommissionAmount = $this
                     ->convertCurrency('EUR', $rawTransaction[5], $commissionAmount);
 
-                echo "$convertedCommissionAmount\n";
+                echo number_format($convertedCommissionAmount, 3) . "\n";
             });
         } catch (\Exception $e) {
             file_put_contents(self::LOG_FILE, $e->getMessage() . "\n");
@@ -48,6 +49,7 @@ class CommissionCalculator
 
     private function convertCurrency($sourceCurrency, $targetCurrency, $amount)
     {
+
         $currencyRateFactory = new CurrencyRateFactory($sourceCurrency, $targetCurrency);
         $currencyRate = $currencyRateFactory->createCurrencyRate();
         $currencyConverter = new CurrencyConverter($currencyRate, $amount);

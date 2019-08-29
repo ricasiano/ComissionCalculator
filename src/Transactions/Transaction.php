@@ -26,7 +26,7 @@ class Transaction
         $this->userType = $userTypeFactory->createUserType();
         $transactionTypeFactory = new TransactionTypeFactory($data[3]);
         $this->transactionType = $transactionTypeFactory->createTransactionType();
-        $this->operationAmount = new OperationAmount($data[5]);
+        $this->operationAmount = new OperationAmount($data[4]);
     }
 
     public function getUserId(): UserId

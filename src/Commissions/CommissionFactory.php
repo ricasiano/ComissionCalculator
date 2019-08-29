@@ -17,30 +17,29 @@ use CommissionCalculator\Transactions\TransactionTypes\CashOut;
 
 class CommissionFactory
 {
-    /** @var Transaction transaction */
-    private $transaction;
+    private $currentTransaction;
     /** @var TransactionType $transactionType */
     private $transactionType;
     /** @var UserType $userType */
     private $userType;
     private $transactions;
 
-    public function __construct(Transactions $transactions)
+    public function __construct(Transactions $transactions, Transaction $currentTransaction)
     {
         $this->transactions = $transactions;
-        $this->transaction = $transactions->current();
-        $this->transactionType = $this->transaction->getTransactionType();
-        $this->userType = $this->transaction->getUserType();
+        $this->currentTransaction = $currentTransaction;
+        $this->transactionType = $this->currentTransaction->getTransactionType();
+        $this->userType = $this->currentTransaction->getUserType();
     }
 
     public function createCommission(): Commission
     {
         if ($this->transactionType instanceof CashIn) {
-            return new DefaultCommission($this->transaction->getOperationAmount());
+            return new DefaultCommission($this->currentTransaction->getOperationAmount());
         }
 
         if ($this->transactionType instanceof CashOut && $this->userType instanceof Legal) {
-            return new LegalPerson($this->transaction->getOperationAmount());
+            return new LegalPerson($this->currentTransaction->getOperationAmount());
         }
 
         if ($this->transactionType instanceof CashOut && $this->userType instanceof Natural) {
@@ -55,9 +54,9 @@ class CommissionFactory
 
         $transactionsFilteredByWeek = new TransactionsFilteredByWeek(
             $this->transactions,
-            $this->transaction
+            $this->currentTransaction
         );
 
-        return new NaturalPerson($transactionsFilteredByWeek, $this->transaction);
+        return new NaturalPerson($transactionsFilteredByWeek, $this->currentTransaction);
     }
 }

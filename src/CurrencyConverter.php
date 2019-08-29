@@ -17,7 +17,6 @@ class CurrencyConverter
 
     public function computeConvertedAmount()
     {
-        return (float) ceil(($this->currencyRate * $this->amount) * self::CEIL_DECIMAL_MODIFIER)
-        / self::CEIL_DECIMAL_MODIFIER;
+        return (float) $this->currencyRate * $this->amount;
     }
 }

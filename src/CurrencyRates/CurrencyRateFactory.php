@@ -19,6 +19,7 @@ class CurrencyRateFactory
 
     private function validateCurrency()
     {
+
         if (!class_exists($this->classCurrency)) {
             throw new InvalidCurrencyException;
         }

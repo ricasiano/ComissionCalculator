@@ -46,7 +46,7 @@ class CommissionFactorySpec extends ObjectBehavior
         $transactions->beADoubleOf(Transactions::class);
         $transactions->current()->willReturn($transaction);
 
-        $this->beConstructedWith($transactions);
+        $this->beConstructedWith($transactions, $transaction);
         $this->createCommission()->shouldBeAnInstanceOf(DefaultCommission::class);
     }
 
@@ -73,7 +73,7 @@ class CommissionFactorySpec extends ObjectBehavior
         $transactions->beADoubleOf(Transactions::class);
         $transactions->current()->willReturn($transaction);
 
-        $this->beConstructedWith($transactions);
+        $this->beConstructedWith($transactions, $transaction);
         $this->createCommission()->shouldBeAnInstanceOf(DefaultCommission::class);
     }
 
@@ -100,7 +100,7 @@ class CommissionFactorySpec extends ObjectBehavior
         $transactions->beADoubleOf(Transactions::class);
         $transactions->current()->willReturn($transaction);
 
-        $this->beConstructedWith($transactions);
+        $this->beConstructedWith($transactions, $transaction);
         $this->createCommission()->shouldBeAnInstanceOf(LegalPerson::class);
     }
 
@@ -142,7 +142,7 @@ class CommissionFactorySpec extends ObjectBehavior
         $transactions->valid()->willReturn(false);
 
 
-        $this->beConstructedWith($transactions);
+        $this->beConstructedWith($transactions, $transaction);
         $this->createCommission()->shouldBeAnInstanceOf(NaturalPerson::class);
     }
 }
