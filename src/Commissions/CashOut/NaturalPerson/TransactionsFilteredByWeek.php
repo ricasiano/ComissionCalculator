@@ -58,7 +58,6 @@ class TransactionsFilteredByWeek
         $operationDate = $transaction->getOperationDate();
 
         return ($transactionUserId->getUserId() == $currentTransactionUserId->getUserId() &&
-            $operationDate->getWeekNumber() == $this->operationDate->getWeekNumber() &&
-            $operationDate->getYear() == $this->operationDate->getYear());
+            $operationDate->getWeekNumber() == $this->operationDate->getWeekNumber());
     }
 }

@@ -31,7 +31,13 @@ class OperationDate
 
     public function getWeekNumber(): string
     {
-        return date('W', strtotime($this->operationDate));
+        $start = new \DateTime('1900-01-01');
+        $transactionDate = new \DateTime($this->operationDate);
+        $daysElapsed = $transactionDate->diff($start);
+
+        return ceil($daysElapsed->format('%a') / 7);
+
+//        return date('W', strtotime($this->operationDate));
     }
 
     public function getYear(): string

@@ -81,7 +81,7 @@ class TransactionsFilteredByWeekSpec extends ObjectBehavior
 
         $this->beConstructedWith($accountTransactions, $currentTransaction);
 
-        $this->countTransactions()->shouldBe(3);
+        $this->countTransactions()->shouldBe(4);
     }
 
     function it_should_return_the_total_amount_of_transactions_are_performed_for_this_week(
@@ -176,6 +176,6 @@ class TransactionsFilteredByWeekSpec extends ObjectBehavior
 
         $this->beConstructedWith($accountTransactions, $currentTransaction);
 
-        $this->computeTotalOperationAmount()->shouldBeApproximately(600, 1.0e-9);;
+        $this->computeTotalOperationAmount()->shouldBeApproximately(1600, 1.0e-9);;
     }
 }

@@ -51,6 +51,6 @@ class CurrencyConverterSpec extends ObjectBehavior
         $this->beConstructedWith($currencyRate, 100);
 
         $this->computeConvertedAmount()
-            ->shouldBe(0.782);
+            ->shouldBeApproximately(0.7814232, 1.0e-9);
     }
 }
