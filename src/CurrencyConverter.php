@@ -5,6 +5,7 @@ use CommissionCalculator\CurrencyRates\CurrencyRate;
 
 class CurrencyConverter
 {
+    const CEIL_DECIMAL_MODIFIER = 1000;
     private $currencyRate;
     private $amount;
 
@@ -16,6 +17,7 @@ class CurrencyConverter
 
     public function computeConvertedAmount()
     {
-        return (float) $this->currencyRate * $this->amount;
+        return (float) ceil(($this->currencyRate * $this->amount) * self::CEIL_DECIMAL_MODIFIER)
+        / self::CEIL_DECIMAL_MODIFIER;
     }
 }
