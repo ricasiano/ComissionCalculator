@@ -77,6 +77,6 @@ class NaturalPersonSpec extends ObjectBehavior
 
         $this->beConstructedWith($accountTransactionsFilteredByWeek, $currentTransaction);
 
-        $this->computeCommission()->shouldBeApproximately(3, 1.0e-9);
+        $this->computeCommission()->shouldBeApproximately(6, 1.0e-9);
     }
 }
