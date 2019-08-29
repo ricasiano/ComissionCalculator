@@ -1,33 +1,17 @@
 <?php
 namespace CommissionCalculator\Transactions;
 
-use CommissionCalculator\Transactions\Commissions\CommissionFactory;
-use CommissionCalculator\Transactions\CurrencyRates\CurrencyRateFactory;
-
 class Transaction
 {
+    private $operationAmount;
     private $operationDate;
     private $userId;
-    private $userType;
-    private $operationType;
-    private $operationAmount;
-    private $currency;
 
-    public function __construct(array $data)
+    public function __construct(UserId $userId, OperationAmount $operationAmount, OperationDate $operationDate)
     {
-        $this->operationDate = new OperationDate($data[0]);
-        $this->userId = new UserId($data[1]);
-        $this->userType = $data[2];
-        $this->operationType = $data[3];
-        $this->operationAmount = new OperationAmount($data[3]);
-        $currencyRateFactory = new CurrencyRateFactory($data[4], 'EUR');
-        $this->currency = $currencyRateFactory->createCurrencyRate();
-        $commissionFactory = new CommissionFactory($data[3], $data[4]);
-    }
-
-    public function getOperationDate()
-    {
-        return $this->operationDate;
+        $this->userId = $userId->getUserId();
+        $this->operationAmount = $operationAmount->getOperationAmount();
+        $this->operationDate = $operationDate;
     }
 
     public function getUserId()
@@ -35,23 +19,18 @@ class Transaction
         return $this->userId;
     }
 
-    public function getUserType()
-    {
-        return $this->userType;
-    }
-
-    public function getOperationType()
-    {
-        return $this->operationType;
-    }
-
     public function getOperationAmount()
     {
         return $this->operationAmount;
     }
 
-    public function getCurrency()
+    public function getWeekNumber()
     {
-        return $this->currency;
+        return date('W', strtotime($this->operationDate));
+    }
+
+    public function getYear()
+    {
+        return date('Y', strtotime($this->operationDate));
     }
 }
